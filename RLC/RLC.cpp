@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cmath>
+#include <string>
 
 // global variables
 double planetMass;
@@ -119,13 +120,127 @@ void fuelRequirements()
 }
 
 void launchTrajectory()
+// Simulating a rocket launch with real-time altitude tracking
 {
-    std::cout << "Launch Trajectory Coming Soon..";
+    double thrust;                  // force pushing the rocket
+    double rocketMass;
+    double dragCoefficient;         // air resistance
+    double timeStep = 1.0;          // simulate 1 second at a time
+    double altitude = 0.0;          // starting on ground
+    double velocity = 0.0;          // starting from rest
+    int timeElapsed = 0;            // in seconds
+
+    
+    std::cout << "\n\n--- LAUNCH TRAJECTORY SIMULATOR ---\n";
+
+    std::cout << "Enter thrust force (Newrons): ";
+    std::cin >> thrust;
+    std::cout << "Enter rocket mass (kg): ";
+    std::cin >> rocketMass;
+    std::cout << "Enter drag coefficient (0.1 - 0.5): ";
+    std::cin >> dragCoefficient;
+    std::cout << "How many secods to simulate? ";
+    std::cin >> timeElapsed;
+
+    std::cout << "\nLaunching...\n\n";
+
+    for (int time = 0; time <= timeElapsed; time++)
+    {
+        double acceleration = (thrust - (rocketMass * 9.81) - (dragCoefficient * velocity * velocity)) / rocketMass;
+        velocity = velocity + (acceleration * timeStep);
+
+        if (velocity < 0) velocity = 0;
+
+        altitude = altitude + (velocity * timeStep);
+
+        if (altitude < 0) altitude = 0;
+
+        if (time % 10 == 0 || time == 0)
+        {
+            std::cout << "T+" << time << "s: Altitude: " << altitude << " m | velocity: " << velocity << " m/s" << std::endl;
+        }
+    }
+
+    std::cout << "\n\nFINAL RESULTS\n";
+    std::cout << "================\n";
+    std::cout << "\nFinal altitude (in meters): " << altitude << std::endl;
+    std::cout << "\nFinal altitude (in kms): " << altitude / 1000 << std::endl;
+    std::cout << "\nFinal velocity (in m/s): " << velocity << std::endl;
+    std::cout << "\nTotal time (in seconds): " << timeElapsed << std::endl;
+
+    std::cout << "\nMilestone:";
+    if (altitude > 100000)
+    {
+        std::cout << "\nMilestone Reached..";
+    }
+    else if (altitude > 10000)
+    {
+        std::cout << "\nMilestone was in stratosphere!";
+    }
+    else
+    {
+        std::cout << "\nMilestone failed" << std::endl;
+    }
 }
 
 void compareRockets()
 {
-    std::cout << "Compare Rockets Coming Soon..";
+    int rocketOne, rocketTwo;
+    
+    std::string rocketNames[5]{ "Saturn V(Apollo Program)" , "Falcon 9 (SpaceX)" , "Starship (SpaceX)" , "Space Shuttle","Soyuz" };
+    double heights[5] = { 110.6 , 70 , 120, 56.1, 46.3 };                                                                               // in meters
+    double masses[5] = { 2970000 , 549054, 5000000 , 2030000 , 308000 };                                                                // in kgs
+    double payloads[5] = { 140000 , 22800, 100000, 27500, 7020 };                                                                       // payload to Lower-Earth-Orbit in kgs
+    double thrusts[5] = {35100, 7607, 72000, 30160, 4145};                                                                              // in KiloNewton
+    std::string fuelTypes[5] = { "RP-1/LOX" , "RP-1/LOX" , "CH4/LOX" , "H2/LOX+Solid" , "RP-1/LOX" };
+    std::string reusable[5] = { "No", "Yes", "Yes", "Partially", "No"};                                                                 // Boolean Yes/No
+    double deltaVs[5] = { 9400 , 9500 , 9000 , 9200 , 9300 };                                                                          // in m/s
+
+    
+    std::cout << "\n\n--- REAL ROCKET DATABASE ---\n";
+    std::cout << "\nAvailable Rockets:";
+
+    for (int list = 0; list <= 4; list++)
+    {
+        std::cout << "\n" << (list + 1) << "." << rocketNames[list];
+    }
+
+    std::cout << "\n\nEnter first rocket: ";
+    std::cin >> rocketOne;
+    std::cout << "Enter second rocket: ";
+    std::cin >> rocketTwo;
+
+    if ((rocketOne > 0 && rocketOne < 5) && (rocketTwo > 0 && rocketTwo < 5))
+    {
+        std::cout << "\n\nCOMPARISON:" << std::endl;
+        std::cout << "\n\===========" << std::endl;
+
+        std::cout << rocketNames[rocketOne] << "\n";
+        std::cout << "Height:             " << heights[rocketOne] << " m\n";
+        std::cout << "Mass:               " << masses[rocketOne] << " kg\n";
+        std::cout << "Payload to LEO:     " << payloads[rocketOne] << " kg\n";
+        std::cout << "Thrust:             " << thrusts[rocketOne] << " kN\n";
+        std::cout << "Fuel Type:          " << fuelTypes[rocketOne] << "\n"; 
+        std::cout << "Reusable:           " << reusable[rocketOne] << "\n"; 
+        std::cout << "Delta-V:            ~" << deltaVs[rocketOne] << " m/s\n\n"; 
+
+        std::cout << rocketNames[rocketTwo] << "\n";
+        std::cout << "Height:             " << heights[rocketTwo] << " m\n";
+        std::cout << "Mass:               " << masses[rocketTwo] << " kg\n";
+        std::cout << "Payload to LEO:     " << payloads[rocketTwo] << " kg\n";
+        std::cout << "Thrust:             " << thrusts[rocketTwo] << " kN\n";
+        std::cout << "Fuel Type:          " << fuelTypes[rocketTwo] << "\n";
+        std::cout << "Reusable:           " << reusable[rocketTwo] << "\n";
+        std::cout << "Delta-V:            ~" << deltaVs[rocketTwo] << " m/s\n";
+
+        std::cout << "\nPress Enter to continue...";
+        std::cin.ignore();
+        std::cin.get();
+    }
+    else
+    {
+        std::cout << "\n\nInvalid selection, please select from the list.\n\n";
+    }
 }
 
 int main()
