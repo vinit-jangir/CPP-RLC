@@ -19,7 +19,7 @@ A comprehensive command-line rocket science calculator built in C++ for educatio
 
 ## How to Run
 
-1. Clone the repository: `git clone https://github.com/yourusername/CPP-RLC.git`
+1. Clone the repository: `git clone https://github.com/vinit-jangir/CPP-RLC.git`
 2. Compile: `g++ RLC.cpp -o RocketCalculator`
 3. Run: `./RocketCalculator` (Linux/Mac) or `RocketCalculator.exe` (Windows)
 
