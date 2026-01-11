@@ -1,1 +1,28 @@
-C++ - Rocket Launch Calculator
+# CPP-RLC (C++ Rocket Launch Calculator)
+
+A comprehensive command-line rocket science calculator built in C++ for educational purposes and space enthusiasts.
+
+## Features
+
+- **Escape Velocity Calculator** - Calculate the minimum speed needed to break free from a planet's gravitational pull
+- **Orbital Velocity Calculator** - Determine the speed required to maintain a stable orbit
+- **Tsiolkovsky Rocket Equation** - Calculate Delta-V, mass ratios, and fuel consumption
+- **Fuel Requirements Calculator** - Compute fuel needed for desired Delta-V missions
+- **Launch Trajectory Simulator** - Real-time simulation of rocket launches with altitude and velocity tracking
+- **Real Rocket Database** - Compare specifications of famous rockets (Saturn V, Falcon 9, Starship, Space Shuttle, Soyuz)
+
+## Technologies Used
+
+- C++ Standard Library
+- Mathematical computations using `<cmath>`
+- Console-based user interface
+
+## How to Run
+
+1. Clone the repository: `git clone https://github.com/yourusername/CPP-RLC.git`
+2. Compile: `g++ RLC.cpp -o RocketCalculator`
+3. Run: `./RocketCalculator` (Linux/Mac) or `RocketCalculator.exe` (Windows)
+
+## Learning Outcomes
+
+This project demonstrates core C++ concepts including functions, arrays, loops, conditionals, user input/output, and mathematical operations applied to real-world physics problems.
